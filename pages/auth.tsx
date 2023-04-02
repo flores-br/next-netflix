@@ -1,16 +1,15 @@
 import React, { useCallback, useState } from 'react'
+import Image from 'next/image'
 import axios from 'axios'
 import { Input } from '@/components'
 import { signIn } from 'next-auth/react'
 
 import type { AuthInput } from '@/types'
-import { useRouter } from 'next/router'
 
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
 
 const Auth = () => {
-  const router = useRouter()
   const [inputs, setInputs] = useState<AuthInput>({
     name: '',
     email: '',
@@ -28,14 +27,12 @@ const Auth = () => {
       await signIn('credentials', {
         email: inputs.email,
         password: inputs.password,
-        redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       })
-      router.push('/')
     } catch (error) {
       console.log(error)
     }
-  }, [inputs.email, inputs.password, router])
+  }, [inputs.email, inputs.password])
 
   const register = useCallback(async () => {
     try {
@@ -52,7 +49,7 @@ const Auth = () => {
     <div className='relative h-full w-full bg-[url("/images/hero.jpg")] bg-no-repeat bg-center bg-fixed bg-cover'>
       <div className='bg-black w-full h-full lg:bg-opacity-50'>
         <nav className='px-12 py-5'>
-          <img src='/images/logo.png' alt='Logo' className='h-12' />
+          <Image src='/images/logo.png' alt='Logo' width={48} height={48} />
         </nav>
         <div className='flex justify-center'>
           <div className='bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full'>
@@ -97,13 +94,13 @@ const Auth = () => {
             </button>
             <div className='flex flex-row items-center gap-4 mt-8 justify-center'>
               <div
-                onClick={() => signIn('google', { callbackUrl: '/' })}
+                onClick={() => signIn('google', { callbackUrl: '/profiles' })}
                 className='w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition'
               >
                 <FcGoogle size={30} />
               </div>
               <div
-                onClick={() => signIn('github', { callbackUrl: '/' })}
+                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
                 className='w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition'
               >
                 <FaGithub size={30} />

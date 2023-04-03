@@ -3,5 +3,6 @@ import Navbar from './Navbar'
 import NavbarItem from './NavbarItem'
 import MobileMenu from './MobileMenu'
 import AccountMenu from './AccountMenu'
+import Billboard from './Billboard'
 
-export { AccountMenu, Input, Navbar, NavbarItem, MobileMenu }
+export { AccountMenu, Billboard, Input, Navbar, NavbarItem, MobileMenu }

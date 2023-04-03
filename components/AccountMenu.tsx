@@ -1,10 +1,13 @@
 import { signOut } from 'next-auth/react'
+import useCurrentUser from '@/hooks/useCurrentUser'
 
 type Props = {
   visible?: boolean
 }
 
 const AccountMenu = ({ visible }: Props) => {
+  const { data } = useCurrentUser()
+
   if (!visible) {
     return null
   }
@@ -18,7 +21,7 @@ const AccountMenu = ({ visible }: Props) => {
             alt='img'
           />
           <p className='text-white text-sm group-hover/item:underline'>
-            Username
+            {data?.name}
           </p>
         </div>
         <hr className='bg-gray-600 border-0 h-px my-4' />

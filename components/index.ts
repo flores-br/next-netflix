@@ -7,6 +7,7 @@ import Billboard from './Billboard'
 import MovieList from './MovieList'
 import MovieCard from './MovieCard'
 import FavoriteButton from './FavoriteButton'
+import PlayButton from './PlayButton'
 
 export {
   AccountMenu,
@@ -18,4 +19,5 @@ export {
   MobileMenu,
   MovieCard,
   MovieList,
+  PlayButton,
 }
